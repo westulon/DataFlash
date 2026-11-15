@@ -1,0 +1,125 @@
+/*
+VOICE: calm, focused revision tool; few hues, nothing shouting.
+IDEA: a stack of ruled index revision cards on a desk.
+PICTURE: the card itself; white, magenta top rule, faint blue ruling.
+COLOUR and TYPE: oxford blue ground band, white cards, magenta accent; Red Hat Display + Red Hat Text.
+LAYOUT: phone first; single column, thumb-reach dock at the bottom, tabs bar.
+*/
+:root{color-scheme:light dark;
+--bg:light-dark(#f4f6fb,#070f26);--ink:light-dark(#0d1530,#e8ecf7);--mute:light-dark(#56607a,#9aa5c2);
+--navy:#0b1f4b;--card:light-dark(#ffffff,#0f1d42);--rule:light-dark(#dbe4f5,#1c2d5c);--line:light-dark(#e3e7f0,#1b2a52);
+--mag:#e0115f;--grn:#0a8f5b;--blu:#2557c7;--hard:light-dark(#5d6680,#7d88a6);
+--m:#0a8f5b;--y:#f2a900;--n:light-dark(#d3d9e6,#2a3964);
+--safe-b:env(safe-area-inset-bottom,0px);--safe-t:env(safe-area-inset-top,0px)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Red Hat Text",system-ui,sans-serif;overflow-x:clip;-webkit-tap-highlight-color:transparent}
+h1,h2{font-family:"Red Hat Display",system-ui,sans-serif;line-height:1.1;text-wrap:balance;margin:0}
+h2{font-size:20px;margin:28px 0 12px}
+.view{min-height:100%;padding-bottom:calc(76px + var(--safe-b))}
+.band{padding:20px max(5vw,16px);max-width:720px;margin:0 auto}
+.ph{font-size:32px;margin:8px 0 16px}
+button{font:inherit;color:inherit}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);font-weight:600;cursor:pointer}
+.btn:focus-visible,.chip:focus-visible,.rate:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--mag);outline-offset:2px}
+.btn.primary{background:var(--mag);border-color:var(--mag);color:#fff}
+.btn.danger{color:var(--mag);border-color:var(--mag)}
+.btn.wide{width:100%}
+.btn:disabled{opacity:.45}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.link{background:none;border:0;color:var(--mute);text-decoration:underline;min-height:40px;cursor:pointer;width:100%}
+
+/* hero */
+.hero{background:var(--navy);color:#fff;padding:calc(24px + var(--safe-t)) max(5vw,16px) 24px}
+.hero-in{max-width:720px;margin:0 auto}
+.kicker{margin:0 0 4px;color:#b8c4e6;font-weight:500}
+.hero h1{font-size:clamp(32px,8vw,44px);font-weight:800}
+.today{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px 0}
+.big{background:rgba(255,255,255,.07);border-radius:14px;padding:12px}
+.big span{display:block;font:800 clamp(30px,9vw,42px)/1 "Red Hat Display",sans-serif}
+.big small{display:block;color:#b8c4e6;font-size:13px;margin-top:6px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);font-weight:600;cursor:pointer}
+.topics{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.topic{display:block;width:100%;text-align:left;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px;cursor:pointer}
+.topic .t1{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.topic b{font-size:17px}
+.topic .due{color:var(--mag);font-weight:600;white-space:nowrap;font-size:14px}
+.topic .ksb{color:var(--mute);font-size:13px}
+.bar{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--n);margin-top:10px}
+.bar i{display:block;height:100%}
+.bar .m,.legend .k-m{background:var(--m)}.bar .y,.legend .k-y{background:var(--y)}.legend .k-n{background:var(--n)}
+.legend{color:var(--mute);font-size:13px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:-8px}
+.loaderr{color:var(--mag)}
+
+/* study */
+#v-study{display:flex;flex-direction:column;padding-bottom:0;min-height:100dvh}
+.sbar{display:flex;align-items:center;gap:8px;padding:calc(8px + var(--safe-t)) 8px 8px;background:var(--navy);color:#fff}
+.sbar-mid{flex:1;display:flex;justify-content:space-between;gap:10px;font-weight:600;padding:0 4px}
+#s-left{color:#b8c4e6;white-space:nowrap}
+.icon{width:44px;height:44px;border-radius:10px;border:0;background:rgba(255,255,255,.08);color:#fff;font-size:18px;cursor:pointer}
+.icon.on{background:var(--mag)}
+.stage{flex:1;padding:16px max(4vw,12px);max-width:720px;width:100%;margin:0 auto}
+.card{position:relative;background:var(--card);border-radius:6px;border-top:6px solid var(--mag);padding:16px 18px 22px;
+ box-shadow:0 1px 0 var(--line),0 8px 24px rgba(11,31,75,.12),6px 6px 0 -1px var(--card),6px 6px 0 0 var(--line);
+ animation:in .22s ease-out}
+@keyframes in{from{transform:translateY(8px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.card{animation:none}}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;font-size:13px}
+.tag{padding:2px 8px;border-radius:6px;background:var(--bg);color:var(--mute);font-weight:600}
+.tag.type{background:var(--navy);color:#fff}
+.tag.star{background:var(--mag);color:#fff}
+.front{font-size:19px;font-weight:600;line-height:1.5}
+.back{margin-top:18px;padding-top:14px;border-top:2px dashed var(--line);font-size:16.5px}
+.back p,.front p{margin:0 0 10px}
+.back ul,.back ol{margin:0 0 10px;padding-left:22px}
+.back li{margin-bottom:4px}
+.back table{border-collapse:collapse;width:100%;font-size:14.5px;margin:6px 0 12px}
+.back th,.back td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+.back th{background:var(--bg)}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.back td,.back th{min-width:72px}
+code{font-size:.9em;background:var(--bg);padding:1px 5px;border-radius:4px}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:4px 0}
+.dock{position:sticky;bottom:0;padding:10px max(4vw,12px) calc(10px + var(--safe-b));background:var(--bg);border-top:1px solid var(--line);max-width:720px;width:100%;margin:0 auto}
+.rates{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.rate{min-height:60px;border-radius:12px;border:0;color:#fff;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.rate span{font-size:13px;opacity:.9}
+.r1{background:var(--mag)}.r2{background:var(--hard)}.r3{background:var(--grn)}.r4{background:var(--blu)}
+.done{text-align:center;padding:40px 10px}
+.done h2{font-size:32px}
+
+/* browse */
+.filters{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+@media(min-width:560px){.filters{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}}
+input,select,textarea{font:inherit;font-size:16px;min-height:48px;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);width:100%}
+.count{color:var(--mute);font-size:14px}
+.blist{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.blist details{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+.blist summary{cursor:pointer;font-weight:600;list-style:none}
+.blist summary::-webkit-details-marker{display:none}
+.blist .meta{margin:0 0 6px}
+.blist .back{margin-top:10px}
+
+/* settings */
+.form{display:grid;gap:6px;max-width:420px}
+.form label{font-weight:600;margin-top:10px}
+.hint{color:var(--mute);font-size:14px;margin:6px 0}
+.flist{padding-left:20px;font-size:14px}
+.filebtn{position:relative;overflow:hidden}
+.filebtn input{position:absolute;inset:0;opacity:0;cursor:pointer}
+details summary{cursor:pointer;margin:12px 0;min-height:32px}
+.confirm{margin-top:10px;padding:12px;border:1.5px solid var(--mag);border-radius:12px}
+.ver{color:var(--mute);font-size:13px;margin-top:30px}
+
+/* tabs */
+.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(3,1fr);background:var(--card);border-top:1px solid var(--line);padding-bottom:var(--safe-b);z-index:5}
+.tabs a{display:flex;align-items:center;justify-content:center;min-height:56px;color:var(--mute);text-decoration:none;font-weight:600}
+.tabs a.on{color:var(--mag)}
+body.studying .tabs{display:none}
+.toast{position:fixed;left:50%;bottom:calc(90px + var(--safe-b));transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:9;max-width:90vw}
+.toast.on{opacity:1}
